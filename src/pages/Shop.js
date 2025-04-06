@@ -4,18 +4,36 @@ import "./Shop.css";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("default");
 
   useEffect(() => {
     axios
       .get("http://localhost:3007/products")
       .then((response) => {
-        console.log("API Response:", response.data.data);  // Check if data is correct
-        setProducts(response.data.data); // Set the correct data from API response
+        console.log("API Response:", response.data.data);
+        setProducts(response.data.data);
       })
       .catch((error) => {
         console.log("Error fetching products:", error);
       });
   }, []);
+
+  // Filter products based on the search term
+  const filteredProducts = products.filter((product) => {
+    return (
+      product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
+
+  // Sort filtered products based on price
+  let sortedProducts = [...filteredProducts];
+  if (sortOrder === "asc") {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  } else if (sortOrder === "desc") {
+    sortedProducts.sort((a, b) => b.price - a.price);
+  }
 
   return (
     <div className="shop-container">
@@ -24,9 +42,28 @@ const Shop = () => {
         <p>Browse through our collection of sustainable, high-quality products.</p>
       </section>
 
+      <section className="shop-filters">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="sort-select"
+        >
+          <option value="default">Sort by Price</option>
+          <option value="asc">Price: Low to High</option>
+          <option value="desc">Price: High to Low</option>
+        </select>
+      </section>
+
       <section className="product-list">
-        {products && products.length > 0 ? (
-          products.map((product) => (
+        {sortedProducts && sortedProducts.length > 0 ? (
+          sortedProducts.map((product) => (
             <div key={product.product_id} className="product-card">
               <img
                 src={`http://localhost:3007/uploads/${product.product_image}`}

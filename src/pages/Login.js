@@ -11,7 +11,7 @@ const Login = () => {
   const [lastName, setLastName] = useState('');
   const [address, setAddress] = useState('');
   const [mobileNo, setMobileNo] = useState('');
-  const [isLogin, setIsLogin] = useState(true); // Track if it's login or registration
+  const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -28,12 +28,17 @@ const Login = () => {
       .then((response) => {
         if (response.data.status === 200) {
           const { user_id, user_name, token } = response.data.results[0];
-
+        
           localStorage.setItem('user_id', user_id);
           localStorage.setItem('user_name', user_name);
           localStorage.setItem('token', token);
-
-          window.location.href = '/shop'; // Adjust as needed
+        
+          // Redirect based on user role
+          if (user_id === '1' || user_id === 1) {
+            window.location.href = '/admin-dashboard';
+          } else {
+            window.location.href = '/customer-dashboard';
+          }
         }
       })
       .catch((error) => {
@@ -61,7 +66,7 @@ const Login = () => {
         if (response.data.status === 201) {
           setSuccess('Registration successful! Please log in.');
           setError('');
-          setIsLogin(true); // Switch to login after registration
+          setIsLogin(true);
         }
       })
       .catch((error) => {

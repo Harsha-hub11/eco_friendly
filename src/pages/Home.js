@@ -6,7 +6,7 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     const handleShopNowClick = () => {
-        navigate("/shop");
+        navigate("/login");
     };
 
     return (
@@ -14,7 +14,7 @@ const HomePage = () => {
             <section className="hero">
                 <h1>Sustainable Living, One Product at a Time</h1>
                 <p>Shop eco-friendly products and contribute to a greener planet.</p>
-                <button onClick={handleShopNowClick}>Shop Now</button>
+                <button onClick={handleShopNowClick}>Get Started</button>
             </section>
 
             <section className="services">
