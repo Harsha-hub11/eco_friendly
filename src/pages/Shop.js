@@ -35,6 +35,27 @@ const Shop = () => {
     sortedProducts.sort((a, b) => b.price - a.price);
   }
 
+  // Function to add a product to the cart
+  const addToCart = async (product) => {
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+      alert("Please log in to add items to your cart.");
+      return;
+    }
+    try {
+      const payload = {
+        product_id: product.product_id,
+        quantity: 1,
+        user_id: userId,
+      };
+      await axios.post("http://localhost:3007/cart", payload);
+      alert("Product added to cart!");
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+      alert("Error adding product to cart.");
+    }
+  };
+
   return (
     <div className="shop-container">
       <section className="shop-header">
@@ -74,7 +95,12 @@ const Shop = () => {
                 <h3>{product.product_name}</h3>
                 <p>{product.description}</p>
                 <span className="price">£{product.price}</span>
-                <button className="add-to-cart">Add to Cart</button>
+                <button
+                  className="add-to-cart"
+                  onClick={() => addToCart(product)}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           ))

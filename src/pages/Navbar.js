@@ -37,6 +37,7 @@ const Navbar = () => {
                 <>
                   <li><Link to="/admin-dashboard">Admin Dashboard</Link></li>
                   <li><Link to="/manage-users">Manage Users</Link></li>
+                  <li><Link to="/manage-orders">Orders</Link></li>
                   <li className="logout-li">
                     <button onClick={handleLogout} className="logout-button">Logout</button>
                   </li>

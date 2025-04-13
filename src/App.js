@@ -9,6 +9,12 @@ import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
 import Footer from "./pages/Footer";
 import ManageUsers from "./pages/ManageUsers";
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
+import ThankYou from "./pages/ThankYou";
+import AdminOrderPage from "./pages/AdminOrderPage";
 
 function App() {
   return (
@@ -24,6 +30,12 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/manage-users" element={<ManageUsers />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/order-confirmation" element={<OrderConfirmation />} />
+            <Route path="/thankyou" element={<ThankYou />} />
+            <Route path="/manage-orders" element={<AdminOrderPage />} />
             
           </Routes>
         </main>

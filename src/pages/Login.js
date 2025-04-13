@@ -37,7 +37,7 @@ const Login = () => {
           if (user_id === '1' || user_id === 1) {
             window.location.href = '/admin-dashboard';
           } else {
-            window.location.href = '/customer-dashboard';
+            window.location.href = '/shop';
           }
         }
       })
