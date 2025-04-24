@@ -1,5 +1,5 @@
 .checkout-container {
-  max-width: 700px;
+  max-width: 720px;
   margin: 30px auto;
   padding: 20px;
   background: #fff;
@@ -46,12 +46,18 @@
   margin-top: 10px;
 }
 
-.shipping-info h3 {
+.shipping-info,
+.payment-info {
+  margin-top: 30px;
+}
+
+.shipping-info h3,
+.payment-info h3 {
   margin-bottom: 15px;
   color: #333;
 }
 
-/* Grid layout for address fields */
+/* Grid layout for both shipping & payment sections */
 .address-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -74,7 +80,8 @@
   margin-left: 2px;
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -85,8 +92,8 @@
 .checkout-button {
   display: block;
   width: 100%;
-  padding: 12px;
-  margin-top: 20px;
+  padding: 14px;
+  margin-top: 25px;
   background-color: #2d6a4f;
   color: #fff;
   font-size: 1.1rem;
